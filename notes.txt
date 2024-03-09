@@ -1,0 +1,17 @@
+the closer you are to the client the more efficient the system
+
+400 players request balance
+economies of scale
+player information store
+call getBalance 400 x
+user balance [cache] -> batching -> gets from backend  
+
+lambda on aws autoscales
+batch size depending on player count
+
+
+[end to end clustering]
+clustering doesn't work if your pipe is the same bandwidth
+
+prioritized communication
+money vs information
