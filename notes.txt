@@ -1,14 +1,31 @@
-the closer you are to the client the more efficient the system
+These are notes in my investigation into scaling nodejs systems
 
-400 players request balance
-economies of scale
-player information store
-call getBalance 400 x
+
+1. The closer you are to the client the more efficient the system
+(for client data).
+Data should take the shortest path.
+
+Create batching where possible to reduce network calls. We want fewer file transfers.
+
+Clustering needs to be end-to-end.
+Clustering one node server will create bottlenecks if the transport pipeline is not parallelized 
+and the cluster on the other end does not exist.
+(many into one)
+
+Example
+400 players request their balance
+player data cache - player information store
+the store can refresh multiple players balance with +- the same speed as 1 player.
+better than calling getBalance 400 times from the db
 user balance [cache] -> batching -> gets from backend  
 
+economies of scale
+
+
+
+[AWS Lambda]
 lambda on aws autoscales
 batch size depending on player count
-
 
 [end to end clustering]
 clustering doesn't work if your pipe is the same bandwidth
